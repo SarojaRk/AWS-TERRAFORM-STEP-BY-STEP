@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "b" {
+resource "aws_s3_bucket" "bkt" {
   bucket = "my-bucket124"
   acl    = "private"
 
