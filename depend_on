@@ -1,0 +1,21 @@
+#two resources create 1st instance  created and than security group will get created coz ,security group is depend on instance
+
+resource "aws_instance" "web_server" {
+  ami           = "${var.ami_id}"
+  instance_type = "${var.instance_type}"
+  vpc_security_group_ids = ["${aws_security_group.web_sg.id}"]
+  }
+
+resource "aws_security_group" "web_sg" {
+  name        = "web_sg"
+  description = "Security group for web server"
+  vpc_id      = "${var.vpc_id}"
+ 
+   depends_on = [
+                    aws_instance.web_server
+                   ]
+          }
+  
+
+
+#***********   depends_on = aws_instance.web_server
